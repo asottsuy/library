@@ -9,7 +9,7 @@ export class LivroService {
   }
 
   async inserir(livro: Livro): Promise<Livro> {
-    if (!livro.titulo || !livro.quantidade_disponivel) {
+    if (!livro.titulo) {
       throw { id: 400, msg: "Está faltando dados obrigatórios" };
     }
     return await this.repository.save(livro);

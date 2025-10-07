@@ -19,7 +19,7 @@ myDataSource
     const livroController = new LivroController(livroService);
 
     //Routes
-    app.use('api/livros', livroRotas(livroController));
+    app.use('/api/livros', livroRotas(livroController));
 
     app.listen(port, () => {
       console.log(`Library rodando em http://localhost:${port}`);

@@ -5,11 +5,11 @@ export class Livro {
   id?: number;
   @Column()
   titulo?: string;
-  @Column({ type: 'int' })
+  @Column({ type: 'int', nullable: false, default: 0 })
   ano_publicacao?: number;
   @Column()
   genero?: string;
-  @Column()
+  @Column( {type: 'int', nullable: false, default: 0})
   quantidade_disponivel?: number;
   //  @Column()
   //  imagem_capa_url!: string;
