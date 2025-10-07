@@ -1,8 +1,8 @@
+![Logo do Projeto](assets/img/library.png)
 
 ````markdown
 # API de Gerenciamento de Biblioteca
 
-![Logo do Projeto](assets/img/library.png)
 
 ## 📖 Visão Geral do Projeto
 
