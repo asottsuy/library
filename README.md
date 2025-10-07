@@ -1,4 +1,4 @@
-![Logo do Projeto](assets/library.png)
+![Logo do Projeto](assets/img/library.png)
 Visão Geral do Projeto
 Este projeto consiste no desenvolvimento de uma API RESTful para gerenciamento de uma biblioteca, focada em Livros, Autores e Empréstimos. O objetivo é cumprir os requisitos de graduação definidos nos Conceitos C, B e A, demonstrando conhecimento em CRUD, modelagem de dados, segurança e deploy.
 
