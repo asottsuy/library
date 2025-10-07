@@ -79,3 +79,36 @@ src/
 ├── entity/       # Modelos de dados / entidades (Livro, Autor, Leitor, Empréstimo)
 └── utils/        # Funções utilitárias, middlewares, helpers (opcional)
 ```
+
+-----
+
+## 🛠️ Próximos Passos para Desenvolvimento
+
+Esta seção é dedicada a orientar os próximos desenvolvedores sobre as tarefas prioritárias e o fluxo de trabalho a ser seguido.
+
+### Tarefas Pendentes
+
+1.  **Implementar o CRUD da entidade `Autor`**:
+
+      * **Modelo da Entidade**: Criar a entidade `Autor` com os seguintes campos:
+          * `id` (Chave Primária)
+          * `nome` (String)
+          * `nacionalidade` (String)
+          * `biografia` (Text)
+          * `livros` (Relação com a entidade Livro)
+      * **Relacionamento**: Estabelecer a relação **One-to-Many** entre `Autor` e `Livro`. Um autor pode ter vários livros, mas um livro pertence a apenas um autor. Siga as boas práticas de modelagem de dados mencionadas anteriormente.
+      * **Camadas**: Desenvolver a lógica completa nas camadas `repository`, `service` e `controller`.
+
+2.  **Criar os Endpoints para `Autor`**:
+
+      * Implementar as rotas necessárias para as operações de CRUD no recurso `/autores`, seguindo os padrões RESTful.
+          * `GET /api/autores`
+          * `GET /api/autores/{id}`
+          * `POST /api/autores`
+          * `PUT /api/autores/{id}`
+          * `DELETE /api/autores/{id}`
+
+### ❗ Instruções de Git e Fluxo de Trabalho
+
+  * **Branch de Desenvolvimento**: Todo o desenvolvimento **DEVE** ser realizado na branch `develop`.
+  * **Não fazer merge na Main**: **NÃO FAÇA** merge direto na branch `main`. A branch `main` deve ser atualizada apenas através de Pull Requests aprovados.
