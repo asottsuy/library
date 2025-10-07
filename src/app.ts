@@ -1,7 +1,7 @@
 import "reflect-metadata";
 import express, { Request, Response } from "express";
 import { myDataSource } from "./data-source";
-import { Livro } from "./entity/livro";
+import { Livro } from "./entity/Livro";
 myDataSource
   .initialize()
   .then(async () => {
