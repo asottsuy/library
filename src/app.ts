@@ -1,7 +1,11 @@
 import "reflect-metadata";
 import express, { Request, Response } from "express";
 import { myDataSource } from "./data-source";
+import { LivroService } from "./service/LivroService";
+import { LivroController } from "./controller/LivroController";
+import { livroRotas } from "./routes/livro.routes";
 import { Livro } from "./entity/Livro";
+
 myDataSource
   .initialize()
   .then(async () => {
@@ -9,51 +13,13 @@ myDataSource
     const port = 3000;
     app.use(express.json());
 
-    app.get("/api/livros", async function (req: Request, res: Response) {
-      const Livros = await myDataSource.getRepository(Livro).find();
-      res.json(Livros);
-    });
+    //Livro
+    const livroRepository = myDataSource.getRepository(Livro);
+    const livroService = new LivroService(livroRepository);
+    const livroController = new LivroController(livroService);
 
-    app.get("/api/livros/:id", async function (req: Request, res: Response) {
-      const results = await myDataSource.getRepository(Livro).findOneBy({
-        id: parseInt(req.params.id),
-      });
-      return res.send(results);
-    });
-
-    app.post("/api/livros", async function (req: Request, res: Response) {
-      const livro = await myDataSource
-        .getRepository(Livro)
-        .create(req.body);
-      const results = await myDataSource.getRepository(Livro).save(livro);
-      return res.send(results);
-    });
-
-    app.put("/api/livros/:id", async function (req: Request, res: Response) {
-      const livro = await myDataSource.getRepository(Livro).findOneBy({
-        id: parseInt(req.params.id),
-      });
-      if (livro) {
-        myDataSource.getRepository(Livro).merge(livro, req.body);
-        const results = await myDataSource.getRepository(Livro).save(livro);
-        return res.send(results);
-      } else {
-        return res.status(404).send("Livro não encontrado!");
-      }
-    });
-
-    app.delete(
-      "/api/Livros/:id",
-      async function (req: Request, res: Response) {
-        const results = await myDataSource
-          .getRepository(Livro)
-          .delete(req.params.id);
-        return res.send(results);
-      }
-    );
-
-
-
+    //Routes
+    app.use('api/livros', livroRotas(livroController));
 
     app.listen(port, () => {
       console.log(`Library rodando em http://localhost:${port}`);
