@@ -15,7 +15,9 @@ export class LivroRepository {
     this.listaLivros.push(novoLivro);
     return novoLivro;
   }
-  listarTodos(): Livro[] {
-    return this.listaLivros;
+  
+  listar(): Livro[] {
+    return [...this.listaLivros];
   }
+  
 }
