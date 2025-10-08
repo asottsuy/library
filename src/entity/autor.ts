@@ -1,6 +1,6 @@
 import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 @Entity()
-export class Livro {
+export class Autor {
   @PrimaryGeneratedColumn()
   id?: BigInt;
   @Column()
