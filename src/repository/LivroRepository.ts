@@ -38,5 +38,13 @@ export class LivroRepository {
     this.listaLivros[index] = livroAtualizado;
     return livroAtualizado
   }
+
+  deletar(id: number): Livro | undefined {
+    const index = this.listaLivros.findIndex(l => l.id === id);
+    //retorna o incice do livro encontrado
+    if (index === -1) return undefined;
+
+    return this.listaLivros.splice(index, 1)[0];
+  }
   
 }

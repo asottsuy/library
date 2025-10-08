@@ -8,6 +8,7 @@ export const livroRotas = (controller: LivroController): Router => {
   router.get('/', controller.listar);
   router.get('/:id', controller.buscarPorId);
   router.put('/:id', controller.atualizar);
+  router.delete('/:id', controller.deletar);
 
   return router;
 };

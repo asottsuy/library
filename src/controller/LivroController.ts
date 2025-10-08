@@ -53,7 +53,6 @@ export class LivroController {
 
   //put atualizar livro
   atualizar =  async (req: Request, res: Response): Promise<void> => {
-
     const id = parseInt(req.params.id)
     const { titulo, ano_publicacao, genero, quantidade_disponivel } = req.body;
 
@@ -66,6 +65,17 @@ export class LivroController {
     }
 
   };
+
+  deletar = async (req: Request, res: Response): Promise<void> => {
+    const id = parseInt(req.params.id);
+    console.log('id: ',id);
+    try {
+      const livroDeletado = await this.service.deletar(id);
+      res.json(livroDeletado);
+    } catch (err: any) {
+      res.status(err.id).json({ error: err.msg});
+    }
+  }
 
 
 

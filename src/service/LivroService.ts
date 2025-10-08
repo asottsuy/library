@@ -62,4 +62,18 @@ export class LivroService {
     }
 
   }
+
+  async deletar(id: number): Promise<Livro> {
+    let livroDeletado = await this.repository.findOneBy({id: id});
+    console.log('livrodeletado: ',livroDeletado);
+
+    if (!livroDeletado || livroDeletado == null) {
+      throw ({id: 404, msg: "Livro nao encontrado"});
+    }
+
+    else {
+      await this.repository.remove(livroDeletado);
+      return livroDeletado;
+    }
+  }
 }
