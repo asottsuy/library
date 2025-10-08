@@ -7,6 +7,7 @@ export const livroRotas = (controller: LivroController): Router => {
   router.post("/", controller.inserir);
   router.get('/', controller.listar);
   router.get('/:id', controller.buscarPorId);
+  router.put('/:id', controller.atualizar);
 
   return router;
 };

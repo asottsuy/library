@@ -23,5 +23,20 @@ export class LivroRepository {
   buscarPorId(id: number): Livro | undefined {
     return this.listaLivros.find(l => l.id === id);
   }
+
+  atualizar(id: number, livro: Omit<Livro, 'id'>): Livro | undefined {
+    const index = this.listaLivros.findIndex(l => l.id === id);
+
+    if (index === -1) return undefined;
+
+    const livroAtualizado = new Livro();
+      livroAtualizado.titulo = livro.titulo,
+      livroAtualizado.ano_publicacao = livro.ano_publicacao,
+      livroAtualizado.genero = livro.genero,
+      livroAtualizado.quantidade_disponivel = livro.quantidade_disponivel;
+
+    this.listaLivros[index] = livroAtualizado;
+    return livroAtualizado
+  }
   
 }

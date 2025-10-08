@@ -41,4 +41,25 @@ export class LivroService {
 
       return livro;
   }
+
+  async atualizar(id: number, livro: Livro): Promise<Livro> {
+    if (!livro.titulo || !livro.ano_publicacao || !livro.genero || !livro.quantidade_disponivel) {
+      throw ({id: 400, msg: "Esta faltando dados obrigatorios"});
+    }
+
+    let livroAlt = await this.repository.findOneBy({id: id});
+
+    if (!livroAlt || livroAlt == null) {
+      throw ({id: 404, msg: "Livro nao encontrado"});
+    }
+
+    else {
+      livroAlt.titulo = livro.titulo
+      livroAlt.ano_publicacao = livro.ano_publicacao
+      livroAlt.genero = livro.genero
+      livroAlt.quantidade_disponivel = livro.quantidade_disponivel
+      return await this.repository.save(livroAlt)
+    }
+
+  }
 }

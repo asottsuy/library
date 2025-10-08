@@ -45,11 +45,28 @@ export class LivroController {
     
     try {
       const livro = await this.service.buscarPorId(id);
-      res.status(200).json(livro);
+      res.json(livro);
     } catch ( err: any ) {
       res.status(err.id).json({ error: err.msg });
     }
   };
+
+  //put atualizar livro
+  atualizar =  async (req: Request, res: Response): Promise<void> => {
+
+    const id = parseInt(req.params.id)
+    const { titulo, ano_publicacao, genero, quantidade_disponivel } = req.body;
+
+    try {
+      const livroAtualizado = await this.service.atualizar(id, {titulo, ano_publicacao, genero, quantidade_disponivel});
+      res.json(livroAtualizado);
+    } catch (err: any) {
+
+      res.status(err.id).json({ error: err.msg });
+    }
+
+  };
+
 
 
 }
