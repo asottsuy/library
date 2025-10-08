@@ -38,4 +38,18 @@ export class LivroController {
 
     res.status(200).json(books);
   }
+
+  //get buscar por id
+  buscarPorId = async (req: Request, res: Response): Promise<void> => {
+    const id = parseInt(req.params.id);
+    
+    try {
+      const livro = await this.service.buscarPorId(id);
+      res.status(200).json(livro);
+    } catch ( err: any ) {
+      res.status(err.id).json({ error: err.msg });
+    }
+  };
+
+
 }

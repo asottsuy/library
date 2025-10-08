@@ -19,5 +19,9 @@ export class LivroRepository {
   listar(): Livro[] {
     return [...this.listaLivros];
   }
+
+  buscarPorId(id: number): Livro | undefined {
+    return this.listaLivros.find(l => l.id === id);
+  }
   
 }

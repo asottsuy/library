@@ -32,4 +32,13 @@ export class LivroService {
   async listar(): Promise<Livro[]> {
     return await this.repository.find();
   }
+
+  async buscarPorId(id: number): Promise<Livro> {
+      let livro = await this.repository.findOneBy({id: id});
+      if (!livro) {
+        throw ({ id: 404, msg: "Livro nao encontrado"});
+      }
+
+      return livro;
+  }
 }
