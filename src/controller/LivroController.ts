@@ -68,7 +68,7 @@ export class LivroController {
 
   deletar = async (req: Request, res: Response): Promise<void> => {
     const id = parseInt(req.params.id);
-    console.log('id: ',id);
+    console.log('id:',id);
     try {
       const livroDeletado = await this.service.deletar(id);
       res.json(livroDeletado);

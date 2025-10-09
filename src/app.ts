@@ -5,6 +5,13 @@ import { LivroService } from "./service/LivroService";
 import { LivroController } from "./controller/LivroController";
 import { livroRotas } from "./routes/livro.routes";
 import { Livro } from "./entity/Livro";
+import { User } from "./entity/User";
+import { UserService } from "./service/UserService";
+import { UserController } from "./controller/UserController";
+import { LoginService } from "./service/LoginService";
+import { LoginController } from "./controller/LoginController";
+import { TokenMiddleware } from "./middleware/TokenMiddleware";
+import { userRotas } from "./routes/UserRouter";
 
 myDataSource
   .initialize()
@@ -19,7 +26,19 @@ myDataSource
     const livroController = new LivroController(livroService);
 
     //Routes
-    app.use('/api/livros', livroRotas(livroController));
+    app.use("/api/livros", livroRotas(livroController));
+
+    //User
+    const userRepository = myDataSource.getRepository(User);
+    const userService = new UserService(userRepository);
+    const userController = new UserController(userService);
+
+    //Login
+    const loginService = new LoginService(userRepository);
+    const loginController = new LoginController(loginService);
+
+    //Midleware TokenMiddleware
+    const tokenMiddleware = new TokenMiddleware(loginService);
 
     app.listen(port, () => {
       console.log(`Library rodando em http://localhost:${port}`);
