@@ -16,23 +16,23 @@ Abaixo estão listados os requisitos organizados por conceito. Utilize as checkb
 
 - [ ] **Apresentação do projeto** de forma clara.
 - [ ] **API RESTful com dois CRUDs** completos e funcionando, com persistência de dados (Ex: Livros e Autores).
-- [ ] Utilização de **Git** e **GitHub** (ou Bitbucket) para controle de versão.
-- [ ] **Colaboração evidenciada** no histórico de commits do controle de versão (em caso de dupla).
-- [ ] **Modelagem apropriada do REST**:
-    - [ ] Definição correta dos endpoints (URLs).
-    - [ ] Retorno correto dos status codes HTTP (2xx, 4xx, 5xx).
-- [ ] **Testes das APIs** realizados corretamente com Insomnia, Postman ou similar.
+- [x] Utilização de **Git** e **GitHub** (ou Bitbucket) para controle de versão.
+- [x] **Colaboração evidenciada** no histórico de commits do controle de versão (em caso de dupla).
+- [x] **Modelagem apropriada do REST**:
+    - [x] Definição correta dos endpoints (URLs).
+    - [x] Retorno correto dos status codes HTTP (2xx, 4xx, 5xx).
+- [x] **Testes das APIs** realizados corretamente com Insomnia, Postman ou similar.
 
 ### Conceito B (Lógica de Negócio e Docker)
 
 - [ ] Realizar todos os requisitos para o **Conceito C**.
 - [ ] Implementar uma funcionalidade que **manipule duas entidades simultaneamente** (Ex: Criar um Empréstimo, que utiliza Livro e Leitor).
 - [ ] Implementar uma funcionalidade com mapeamento **1-1** ou **Many-1** (duas, se for em dupla).
-- [ ] **Tratamento de erros e validações** robusto, utilizando a camada de negócio (Service).
-- [ ] **Modelagem apropriada do REST**:
-    - [ ] Retorno de `400 Bad Request` em erros de validação.
-    - [ ] Retorno de `404 Not Found` para recursos não encontrados.
-- [ ] Utilização de **Docker** para containerizar a aplicação.
+- [x] **Tratamento de erros e validações** robusto, utilizando a camada de negócio (Service).
+- [x] **Modelagem apropriada do REST**:
+    - [x] Retorno de `400 Bad Request` em erros de validação.
+    - [x] Retorno de `404 Not Found` para recursos não encontrados.
+- [x] Utilização de **Docker** para containerizar a aplicação.
 
 ### Conceito A (Avançado e Deploy)
 
@@ -40,8 +40,8 @@ Abaixo estão listados os requisitos organizados por conceito. Utilize as checkb
 - [ ] Aplicação de **regras de negócio** complexas e corretamente implementadas.
 - [ ] Implementar uma funcionalidade que utilize mapeamento **Many-Many** (Ex: Livro e Leitor na entidade Empréstimo) ou que trabalhe com mais de duas entidades.
 - [ ] Utilizar **recursos de mídias** (upload de imagem, áudio ou outro) em um dos endpoints (Ex: Imagem de capa do Livro).
-- [ ] Utilizar **autenticação nas APIs** aplicando padrões de segurança:
-    - [ ] Implementação de **OAuth** e/ou **JWT** (JSON Web Tokens).
+- [x] Utilizar **autenticação nas APIs** aplicando padrões de segurança:
+    - [x] Implementação de **OAuth** e/ou **JWT** (JSON Web Tokens).
 - [ ] **Implantar (deploy)** a API em um servidor na nuvem (AWS, Azure, Heroku, etc.).
 - [ ] Utilizar **CI/CD** (Continuous Integration/Continuous Delivery) no deploy (de preferência com GitHub Actions).
 
