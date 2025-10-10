@@ -2,7 +2,7 @@ import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 @Entity()
 export class Leitor {
   @PrimaryGeneratedColumn()
-  id?: BigInt;
+  id?: number;
   @Column({nullable: false})
   nome?: string;
   @Column({nullable: false})
