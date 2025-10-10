@@ -12,6 +12,7 @@ import { LoginService } from "./service/LoginService";
 import { LoginController } from "./controller/LoginController";
 import { TokenMiddleware } from "./middleware/TokenMiddleware";
 import { userRotas } from "./routes/UserRouter";
+import { loginRotas } from "./routes/LoginRouter";
 
 myDataSource
   .initialize()
@@ -39,8 +40,9 @@ myDataSource
     const tokenMiddleware = new TokenMiddleware(loginService);
     
     //Routes
-    app.use("/api/livros", livroRotas(livroController));
-    app.use('/api/user', userRotas(userController));
+    app.use("/api/livros", tokenMiddleware.verificarAcesso.bind(tokenMiddleware), livroRotas(livroController));
+    app.use('/api/user', tokenMiddleware.verificarAcesso.bind(tokenMiddleware), userRotas(userController));
+    app.use('/api/login', loginRotas(loginController));
 
     app.listen(port, () => {
       console.log(`Library rodando em http://localhost:${port}`);

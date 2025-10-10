@@ -1,8 +1,10 @@
 import { Repository } from "typeorm";
 import { User } from "../entity/User";
 import { sign, verify } from "jsonwebtoken";
+import dotenv from "dotenv";
+dotenv.config();
 
-const SECRET = "Sen@c2025";
+const SECRET = process.env.JWT_SECRET || "l1br4ry";
 export class LoginService {
     private repository: Repository<User>;
   
