@@ -5,6 +5,10 @@ import { LivroService } from "./service/LivroService";
 import { LivroController } from "./controller/LivroController";
 import { livroRotas } from "./routes/livro.routes";
 import { Livro } from "./entity/Livro";
+import { AutorService } from "./service/AutorService";
+import { AutorController } from "./controller/AutorController";
+import { autorRotas } from "./routes/autor.routes";
+import { Autor } from "./entity/autor";
 
 myDataSource
   .initialize()

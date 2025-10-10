@@ -7,6 +7,6 @@ export class Autor {
   nome?: string;
   @Column({nullable: false})
   nacionalidade?: string;
-  //@column()
-  //biografia?: string;
+  @Column()
+  biografia?: string;
 }

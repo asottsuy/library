@@ -8,7 +8,8 @@ export class AutorRepository {
         const novoAutor = new Autor();
             novoAutor.id = AutorRepository.proximoId++;
             novoAutor.nome = autorData.nome;
-            novoAutor.nacionalidade = autorData.nacionalidade;
+            novoAutor.nacionalidade = autorData.nacionalidade,
+            novoAutor.biografia;
 
     this.listaAutores.push(novoAutor);
     return novoAutor;
@@ -22,19 +23,20 @@ export class AutorRepository {
         return this.listaAutores.find(p => p.id === id);
     }
 
-    atualizar(id: number, livro: Omit<Autor, 'id'>): Autor | undefined{
+    atualizar(id: number, autor: Omit<Autor, 'id'>): Autor | undefined{
         const index = this.listaAutores.findIndex(l => l.id === id);
         
         if (index === -1) return undefined;
 
         const autorAtualizado = new Autor();
-            autorAtualizado.nome = livro.nome,
-            autorAtualizado.nacionalidade = livro.nacionalidade;
+            autorAtualizado.nome = autor.nome,
+            autorAtualizado.nacionalidade = autor.nacionalidade,
+            autorAtualizado.biografia = autor.biografia;
     }
 
     deletar(id: number): Autor | undefined {
         const index = this.listaAutores.findIndex(l => l.id === id);
-        //retorna o incice do livro encontrado
+        //retorna o incice do autor encontrado
         if (index === -1) return undefined;
 
         return this.listaAutores.splice(index, 1)[0];
