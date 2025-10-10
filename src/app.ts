@@ -25,20 +25,22 @@ myDataSource
     const livroService = new LivroService(livroRepository);
     const livroController = new LivroController(livroService);
 
-    //Routes
-    app.use("/api/livros", livroRotas(livroController));
-
+    
     //User
     const userRepository = myDataSource.getRepository(User);
     const userService = new UserService(userRepository);
     const userController = new UserController(userService);
-
+    
     //Login
     const loginService = new LoginService(userRepository);
     const loginController = new LoginController(loginService);
-
+    
     //Midleware TokenMiddleware
     const tokenMiddleware = new TokenMiddleware(loginService);
+    
+    //Routes
+    app.use("/api/livros", livroRotas(livroController));
+    app.use('/api/user', userRotas(userController));
 
     app.listen(port, () => {
       console.log(`Library rodando em http://localhost:${port}`);

@@ -9,6 +9,7 @@ export class UserController {
   }
 
   inserir = async (req: Request, res: Response): Promise<void> => {
+    console.log("BODY RECEBIDO:", req.body);
     const { email, senha } = req.body;
     try{ 
         const novoUser = await this.service.inserir({ email, senha });
