@@ -19,5 +19,32 @@ export class LivroRepository {
   listar(): Livro[] {
     return [...this.listaLivros];
   }
+
+  buscarPorId(id: number): Livro | undefined {
+    return this.listaLivros.find(l => l.id === id);
+  }
+
+  atualizar(id: number, livro: Omit<Livro, 'id'>): Livro | undefined {
+    const index = this.listaLivros.findIndex(l => l.id === id);
+
+    if (index === -1) return undefined;
+
+    const livroAtualizado = new Livro();
+      livroAtualizado.titulo = livro.titulo,
+      livroAtualizado.ano_publicacao = livro.ano_publicacao,
+      livroAtualizado.genero = livro.genero,
+      livroAtualizado.quantidade_disponivel = livro.quantidade_disponivel;
+
+    this.listaLivros[index] = livroAtualizado;
+    return livroAtualizado
+  }
+
+  deletar(id: number): Livro | undefined {
+    const index = this.listaLivros.findIndex(l => l.id === id);
+    //retorna o incice do livro encontrado
+    if (index === -1) return undefined;
+
+    return this.listaLivros.splice(index, 1)[0];
+  }
   
 }
