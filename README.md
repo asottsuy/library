@@ -15,7 +15,7 @@ Abaixo estão listados os requisitos organizados por conceito. Utilize as checkb
 ### Conceito C (Base e Persistência)
 
 - [ ] **Apresentação do projeto** de forma clara.
-- [ ] **API RESTful com dois CRUDs** completos e funcionando, com persistência de dados (Ex: Livros e Autores).
+- [x] **API RESTful com dois CRUDs** completos e funcionando, com persistência de dados (Ex: Livros e Autores).
 - [x] Utilização de **Git** e **GitHub** (ou Bitbucket) para controle de versão.
 - [x] **Colaboração evidenciada** no histórico de commits do controle de versão (em caso de dupla).
 - [x] **Modelagem apropriada do REST**:
@@ -27,7 +27,7 @@ Abaixo estão listados os requisitos organizados por conceito. Utilize as checkb
 
 - [ ] Realizar todos os requisitos para o **Conceito C**.
 - [ ] Implementar uma funcionalidade que **manipule duas entidades simultaneamente** (Ex: Criar um Empréstimo, que utiliza Livro e Leitor).
-- [ ] Implementar uma funcionalidade com mapeamento **1-1** ou **Many-1** (duas, se for em dupla).
+- [x] Implementar uma funcionalidade com mapeamento **1-1** ou **Many-1** (duas, se for em dupla).
 - [x] **Tratamento de erros e validações** robusto, utilizando a camada de negócio (Service).
 - [x] **Modelagem apropriada do REST**:
     - [x] Retorno de `400 Bad Request` em erros de validação.
