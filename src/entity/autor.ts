@@ -1,4 +1,6 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { Livro } from "./Livro";
+
 @Entity()
 export class Autor {
   @PrimaryGeneratedColumn()
@@ -9,4 +11,6 @@ export class Autor {
   nacionalidade?: string;
   @Column({nullable: false})
   biografia?: string;
+  @OneToMany(() => Livro, (livro) => livro.autor, {nullable: false})
+  livros?: Livro[]
 }

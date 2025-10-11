@@ -11,6 +11,8 @@ export class LivroRepository {
         novoLivro.ano_publicacao = livroData.ano_publicacao;
         novoLivro.genero = livroData.genero;
         novoLivro.quantidade_disponivel = livroData.quantidade_disponivel;
+        novoLivro.imagem_capa = livroData?.imagem_capa;
+        novoLivro.autor = livroData.autor;
 
     this.listaLivros.push(novoLivro);
     return novoLivro;

@@ -10,7 +10,14 @@ export class LivroController {
 
   //post
   inserir = async (req: Request, res: Response): Promise<void> => {
-    const { titulo, ano_publicacao, genero, quantidade_disponivel } = req.body;
+    const {
+      titulo,
+      ano_publicacao,
+      genero,
+      quantidade_disponivel,
+      imagem_capa,
+      autor,
+    } = req.body;
 
     try {
       const newBook = await this.service.inserir({
@@ -18,6 +25,8 @@ export class LivroController {
         ano_publicacao,
         genero,
         quantidade_disponivel,
+        imagem_capa,
+        autor,
       });
       res.status(201).json(newBook);
     } catch (err: any) {
@@ -32,51 +41,53 @@ export class LivroController {
     if (books.length === 0) {
       res.status(200).json({
         message: "Nenhum livro encontrado.",
-        data: []
+        data: [],
       });
     }
 
     res.status(200).json(books);
-  }
+  };
 
   //get buscar por id
   buscarPorId = async (req: Request, res: Response): Promise<void> => {
     const id = parseInt(req.params.id);
-    
+
     try {
       const livro = await this.service.buscarPorId(id);
       res.json(livro);
-    } catch ( err: any ) {
+    } catch (err: any) {
       res.status(err.id).json({ error: err.msg });
     }
   };
 
   //put atualizar livro
-  atualizar =  async (req: Request, res: Response): Promise<void> => {
-    const id = parseInt(req.params.id)
-    const { titulo, ano_publicacao, genero, quantidade_disponivel } = req.body;
+  atualizar = async (req: Request, res: Response): Promise<void> => {
+    const id = parseInt(req.params.id);
+    const { titulo, ano_publicacao, genero, quantidade_disponivel, imagem_capa, autor } = req.body;
 
     try {
-      const livroAtualizado = await this.service.atualizar(id, {titulo, ano_publicacao, genero, quantidade_disponivel});
+      const livroAtualizado = await this.service.atualizar(id, {
+        titulo,
+        ano_publicacao,
+        genero,
+        quantidade_disponivel,
+        imagem_capa,
+        autor,
+      });
       res.json(livroAtualizado);
     } catch (err: any) {
-
       res.status(err.id).json({ error: err.msg });
     }
-
   };
 
   deletar = async (req: Request, res: Response): Promise<void> => {
     const id = parseInt(req.params.id);
-    console.log('id:',id);
+    console.log("id:", id);
     try {
       const livroDeletado = await this.service.deletar(id);
       res.json(livroDeletado);
     } catch (err: any) {
-      res.status(err.id).json({ error: err.msg});
+      res.status(err.id).json({ error: err.msg });
     }
-  }
-
-
-
+  };
 }

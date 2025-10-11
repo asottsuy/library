@@ -25,16 +25,16 @@ myDataSource
     const app = express();
     const port = 3000;
     app.use(express.json());
-
-    //Livro
-    const livroRepository = myDataSource.getRepository(Livro);
-    const livroService = new LivroService(livroRepository);
-    const livroController = new LivroController(livroService);
-
+    
     //Autor
     const autorRepository = myDataSource.getRepository(Autor);
     const autorService = new AutorService(autorRepository);
     const autorController = new AutorController(autorService)
+    
+    //Livro
+    const livroRepository = myDataSource.getRepository(Livro);
+    const livroService = new LivroService(livroRepository, autorRepository);
+    const livroController = new LivroController(livroService);
     
     //User
     const userRepository = myDataSource.getRepository(User);
@@ -53,6 +53,17 @@ myDataSource
     app.use('/api/livros', tokenMiddleware.verificarAcesso.bind(tokenMiddleware), livroRotas(livroController));
     app.use('/api/user', tokenMiddleware.verificarAcesso.bind(tokenMiddleware), userRotas(userController));
     app.use('/api/login', loginRotas(loginController));
+
+    let admin = await userRepository.findOneBy({ email: "admin@exemplo.com" });
+
+    if (!admin) {
+      admin = await userRepository.save({
+        nome: "Admin",
+        email: "admin@exemplo.com",
+        senha: "123456",
+      })
+      console.log("Usuário criado")
+    }
 
     app.listen(port, () => {
       console.log(`Library rodando em http://localhost:${port}`);
