@@ -1,4 +1,4 @@
-import {Autor} from "../entity/autor";
+import {Autor} from "../entity/Autor";
 
 export class AutorRepository {
     private listaAutores: Autor[] = [];
@@ -9,7 +9,7 @@ export class AutorRepository {
             novoAutor.id = AutorRepository.proximoId++;
             novoAutor.nome = autorData.nome;
             novoAutor.nacionalidade = autorData.nacionalidade,
-            novoAutor.biografia;
+            novoAutor.biografia =  autorData.biografia;
 
     this.listaAutores.push(novoAutor);
     return novoAutor;

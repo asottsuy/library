@@ -3,10 +3,10 @@ import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 export class Autor {
   @PrimaryGeneratedColumn()
   id?: number;
-  @Column()
+  @Column({nullable: true})
   nome?: string;
-  @Column({nullable: false})
+  @Column({nullable: true})
   nacionalidade?: string;
-  @Column()
+  @Column({nullable: false})
   biografia?: string;
 }

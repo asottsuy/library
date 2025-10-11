@@ -21,7 +21,7 @@ export class TokenMiddleware {
 
     try {
       console.log("Validar Token ", token);
-      this.service.validarToken(token);
+      await this.service.validarToken(token);
       console.log("Token validado!");
       next();
     } catch (err: any) {

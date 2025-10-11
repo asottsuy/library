@@ -1,22 +1,23 @@
 import "reflect-metadata";
-import express, { Request, Response } from "express";
+import express from "express";
 import { myDataSource } from "./data-source";
 import { LivroService } from "./service/LivroService";
 import { LivroController } from "./controller/LivroController";
-import { livroRotas } from "./routes/livro.routes";
+import { livroRotas } from "./routes/LivroRouter";
 import { Livro } from "./entity/Livro";
-import { AutorService } from "./service/AutorService";
+import { AutorService} from './service/AutorService';
 import { AutorController } from "./controller/AutorController";
-import { autorRotas } from "./routes/autor.routes";
-import { Autor } from "./entity/autor";
+import { autorRotas } from "./routes/AutorRouter";
+import { Autor } from "./entity/Autor";
 import { User } from "./entity/User";
 import { UserService } from "./service/UserService";
 import { UserController } from "./controller/UserController";
 import { LoginService } from "./service/LoginService";
 import { LoginController } from "./controller/LoginController";
-import { TokenMiddleware } from "./middleware/TokenMiddleware";
+import { TokenMiddleware } from "./utils/middleware/TokenMiddleware";
 import { userRotas } from "./routes/UserRouter";
 import { loginRotas } from "./routes/LoginRouter";
+
 
 myDataSource
   .initialize()
@@ -30,6 +31,10 @@ myDataSource
     const livroService = new LivroService(livroRepository);
     const livroController = new LivroController(livroService);
 
+    //Autor
+    const autorRepository = myDataSource.getRepository(Autor);
+    const autorService = new AutorService(autorRepository);
+    const autorController = new AutorController(autorService)
     
     //User
     const userRepository = myDataSource.getRepository(User);
@@ -44,7 +49,8 @@ myDataSource
     const tokenMiddleware = new TokenMiddleware(loginService);
     
     //Routes
-    app.use("/api/livros", tokenMiddleware.verificarAcesso.bind(tokenMiddleware), livroRotas(livroController));
+    app.use('/api/autor', tokenMiddleware.verificarAcesso.bind(tokenMiddleware), autorRotas(autorController));
+    app.use('/api/livros', tokenMiddleware.verificarAcesso.bind(tokenMiddleware), livroRotas(livroController));
     app.use('/api/user', tokenMiddleware.verificarAcesso.bind(tokenMiddleware), userRotas(userController));
     app.use('/api/login', loginRotas(loginController));
 

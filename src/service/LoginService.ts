@@ -35,9 +35,16 @@ export class LoginService {
                 throw ({id: 401, msg: "Token Invalido"});    
             }
             return;
-        } catch (err) {
+        } catch (err :any) {
             console.log(err)
-            throw ({id: 401, msg: "Token Invalido"});    
+
+            if (err.name === "TokenExpiredError") {
+                console.error("Token expirado: ", err.expiredAt);
+                throw { id: 401, msg: "Token expirado"};
+            }
+
+            console.error("Erro ao validar token: ", err.message)
+            throw { id: 401, msg: "Token inválido"};
         }
     }
 }
