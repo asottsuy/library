@@ -16,7 +16,7 @@ export class LivroController {
       genero,
       quantidade_disponivel,
       imagem_capa,
-      autor,
+      autores,
     } = req.body;
 
     try {
@@ -26,7 +26,7 @@ export class LivroController {
         genero,
         quantidade_disponivel,
         imagem_capa,
-        autor,
+        autores,
       });
       res.status(201).json(newBook);
     } catch (err: any) {
@@ -63,7 +63,7 @@ export class LivroController {
   //put atualizar livro
   atualizar = async (req: Request, res: Response): Promise<void> => {
     const id = parseInt(req.params.id);
-    const { titulo, ano_publicacao, genero, quantidade_disponivel, imagem_capa, autor } = req.body;
+    const { titulo, ano_publicacao, genero, quantidade_disponivel, imagem_capa, autores } = req.body;
 
     try {
       const livroAtualizado = await this.service.atualizar(id, {
@@ -72,7 +72,7 @@ export class LivroController {
         genero,
         quantidade_disponivel,
         imagem_capa,
-        autor,
+        autores,
       });
       res.json(livroAtualizado);
     } catch (err: any) {

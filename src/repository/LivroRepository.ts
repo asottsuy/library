@@ -12,7 +12,7 @@ export class LivroRepository {
         novoLivro.genero = livroData.genero;
         novoLivro.quantidade_disponivel = livroData.quantidade_disponivel;
         novoLivro.imagem_capa = livroData?.imagem_capa;
-        novoLivro.autor = livroData.autor;
+        novoLivro.autores = livroData.autores;
 
     this.listaLivros.push(novoLivro);
     return novoLivro;

@@ -91,7 +91,6 @@ Abaixo está a estrutura de colunas sugerida para cada entidade principal do ban
 | `nome` | `VARCHAR(255)` | Nome completo do leitor. Obrigatório. |
 | `email` | `VARCHAR(255)` | Endereço de e-mail do leitor. Obrigatório e `UNIQUE`. |
 | `senha` | `VARCHAR(255)` | Senha criptografada (hash). Obrigatório. |
-| `telefone` | `VARCHAR(20)` | Telefone de contato. Opcional. |
 
 ### `Empréstimo`
 

@@ -1,6 +1,6 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, ManyToMany } from "typeorm";
 import { Livro } from "./Livro";
-// import { Leitor } from "./Leitor";
+import { User } from './User';
 export enum StatusEmprestimo {
   ATIVO = "ATIVO",
   DEVOLVIDO = "DEVOLVIDO",
@@ -12,12 +12,11 @@ export class Emprestimo {
   @PrimaryGeneratedColumn()
   id?: number;
 
-  //falta criar as entidade de Autor e Leitor
-  //   @ManyToOne(() => Livro)
-  //   livro: Livro;
+  @ManyToMany(() => Livro)
+  livro?: Livro;
 
-  //   @ManyToOne(() => Leitor)
-  //   leitor: Leitor;
+  @ManyToMany(() => User)
+  user?: User;
 
   @Column({ type: "date", default: () => "CURRENT_DATE" })
   data_emprestimo?: Date;

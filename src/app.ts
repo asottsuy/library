@@ -49,9 +49,11 @@ myDataSource
     const tokenMiddleware = new TokenMiddleware(loginService);
     
     //Routes
-    app.use('/api/autor', tokenMiddleware.verificarAcesso.bind(tokenMiddleware), autorRotas(autorController));
-    app.use('/api/livros', tokenMiddleware.verificarAcesso.bind(tokenMiddleware), livroRotas(livroController));
+    app.use('/api/autor', autorRotas(autorController));
+    app.use('/api/livros', livroRotas(livroController));
     app.use('/api/user', tokenMiddleware.verificarAcesso.bind(tokenMiddleware), userRotas(userController));
+    // app.use('/api/autor', tokenMiddleware.verificarAcesso.bind(tokenMiddleware), autorRotas(autorController));
+    // app.use('/api/livros', tokenMiddleware.verificarAcesso.bind(tokenMiddleware), livroRotas(livroController));
     app.use('/api/login', loginRotas(loginController));
 
     let admin = await userRepository.findOneBy({ email: "admin@exemplo.com" });

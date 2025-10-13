@@ -1,6 +1,8 @@
 import {
   Column,
   Entity,
+  JoinTable,
+  ManyToMany,
   ManyToOne,
   PrimaryGeneratedColumn,
 } from "typeorm";
@@ -21,6 +23,7 @@ export class Livro {
   @Column({ type: "varchar", length: 255, nullable: true })
   imagem_capa!: string;
 
-  @ManyToOne(() => Autor, (autor) => autor.livros, { eager: true })
-  autor!: Autor;
+  @ManyToMany(() => Autor, (autor) => autor.livros)
+  @JoinTable()
+  autores!: Autor[];
 }

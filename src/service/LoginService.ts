@@ -19,7 +19,7 @@ export class LoginService {
                 usuarioId: usuario.id,
                 usuarioEmail: usuario.email
             }, SECRET,
-                { expiresIn: '1h' }
+                { expiresIn: '12h' }
             );
             return token;            
         }

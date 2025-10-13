@@ -8,7 +8,7 @@ export const myDataSource = new DataSource({
   database: "library-db",
   entities: ["src/entity/*.ts"],
   logging: true,
-  dropSchema: true, //adicionar se quiser limpar o banco
+  dropSchema: false, //adicionar se quiser limpar o banco
   synchronize: true,
   subscribers: [],
   migrations: [],

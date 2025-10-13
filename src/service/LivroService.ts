@@ -1,13 +1,17 @@
 import { Livro } from "../entity/Livro";
 import { Autor } from "../entity/Autor";
-import { Repository } from "typeorm";
-import { AutorRepository } from '../repository/AutorRepository';
+import { Repository, In } from "typeorm";
+import { AutorRepository } from "../repository/AutorRepository";
+import { myDataSource } from "../data-source";
 
 export class LivroService {
   private repository: Repository<Livro>;
   private autorRepository: Repository<Autor>;
 
-  constructor(repository: Repository<Livro>, autorRepository: Repository<Autor>) {
+  constructor(
+    repository: Repository<Livro>,
+    autorRepository: Repository<Autor>
+  ) {
     this.repository = repository;
     this.autorRepository = autorRepository;
   }
@@ -19,7 +23,7 @@ export class LivroService {
     if (!livro.ano_publicacao || livro.ano_publicacao <= 0)
       throw { id: 400, msg: "Ano de publicação inválido" };
 
-    if (!livro.autor) {
+    if (!livro.autores) {
       throw { id: 400, msg: "Autor faltando" };
     }
 
@@ -37,16 +41,18 @@ export class LivroService {
     if (existente) throw { id: 409, msg: "Este livro já está cadastrado" };
 
     // Verifica se o autor existe
-    const autorEncontrado = await this.autorRepository.findOneBy({
-      id: (livro.autor as any).id || livro.autor,
+    const autorIds: number[] = livro.autores as number[];
+    const autoresEncontrados = await this.autorRepository.findBy({
+      id: In(autorIds),
     });
 
-    if (!autorEncontrado) throw { id: 404, msg: "Autor não encontrado" };
+    if (autoresEncontrados.length !== autorIds.length)
+      throw { id: 404, msg: "1 ou mais autores nao encontrados" };
 
     // Cria o novo livro associando o autor existente
     const novoLivro = this.repository.create({
       ...livro,
-      autor: autorEncontrado,
+      autores: autoresEncontrados,
     });
 
     return this.repository.save(novoLivro);
@@ -54,7 +60,11 @@ export class LivroService {
 
   //listar todos os livros
   async listar(): Promise<Livro[]> {
-    return await this.repository.find();
+    const livros = await myDataSource.getRepository(Livro).find({
+      relations: ["autores"],
+    });
+
+    return livros;
   }
 
   //buscar livro por id
@@ -78,17 +88,31 @@ export class LivroService {
       throw { id: 400, msg: "Esta faltando dados obrigatorios" };
     }
 
-    let livroAlt = await this.repository.findOneBy({ id: id });
+    const livroAlt = await this.repository.findOne({
+      where: { id },
+      relations: ["autores"], // ✅ garante que autores já venham carregados
+    });
 
-    if (!livroAlt || livroAlt == null) {
+    if (!livroAlt) {
       throw { id: 404, msg: "Livro nao encontrado" };
-    } else {
-      livroAlt.titulo = livro.titulo;
-      livroAlt.ano_publicacao = livro.ano_publicacao;
-      livroAlt.genero = livro.genero;
-      livroAlt.quantidade_disponivel = livro.quantidade_disponivel;
-      return await this.repository.save(livroAlt);
     }
+    livroAlt.titulo = livro.titulo;
+    livroAlt.ano_publicacao = livro.ano_publicacao;
+    livroAlt.genero = livro.genero;
+    livroAlt.quantidade_disponivel = livro.quantidade_disponivel;
+
+    if (livro.autores && livro.autores.length > 0) {
+      const autoresEncontrados = await this.autorRepository.findBy({
+        id: In(livro.autores as number[]),
+      });
+
+      if (autoresEncontrados.length !== (livro.autores as number[]).length) {
+        throw { id: 404, msg: "Um ou mais autores não encontrados" };
+      }
+
+      livroAlt.autores = autoresEncontrados; // ✅ array de entidades
+    }
+    return await this.repository.save(livroAlt);
   }
 
   //deletar livro
