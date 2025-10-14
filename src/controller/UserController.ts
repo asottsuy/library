@@ -9,10 +9,9 @@ export class UserController {
   }
 
   inserir = async (req: Request, res: Response): Promise<void> => {
-    console.log("BODY RECEBIDO:", req.body);
-    const { email, senha } = req.body;
+    const { nome, email, senha } = req.body;
     try{ 
-        const novoUser = await this.service.inserir({ email, senha });
+        const novoUser = await this.service.inserir({nome, email, senha });
         res.status(201).json(novoUser);
     }
     catch(err:any) {

@@ -7,6 +7,7 @@ export class UserRepository {
   save(userData: Omit<User, "id">): User {
     const newUser = new User();
         newUser.id = UserRepository.proximoId++;
+        newUser.nome = userData.nome;
         newUser.email = userData.email;
         newUser.senha = userData.senha;
 

@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { Emprestimo } from "./Emprestimo";
 
 @Entity()
 export class User {
@@ -6,8 +7,10 @@ export class User {
     id?: number;
     @Column()
     nome?: string;
-    @Column()
+    @Column({ unique: true })
     email?: string;
     @Column()
     senha?: string;
+    @OneToMany(() => Emprestimo, (emprestimo) => emprestimo.user)
+    emprestimos?: Emprestimo[]
 }

@@ -25,8 +25,8 @@ Abaixo estão listados os requisitos organizados por conceito. Utilize as checkb
 
 ### Conceito B (Lógica de Negócio e Docker)
 
-- [ ] Realizar todos os requisitos para o **Conceito C**.
-- [ ] Implementar uma funcionalidade que **manipule duas entidades simultaneamente** (Ex: Criar um Empréstimo, que utiliza Livro e Leitor).
+- [x] Realizar todos os requisitos para o **Conceito C**.
+- [x] Implementar uma funcionalidade que **manipule duas entidades simultaneamente** (Ex: Criar um Empréstimo, que utiliza Livro e Leitor).
 - [x] Implementar uma funcionalidade com mapeamento **1-1** ou **Many-1** (duas, se for em dupla).
 - [x] **Tratamento de erros e validações** robusto, utilizando a camada de negócio (Service).
 - [x] **Modelagem apropriada do REST**:
@@ -36,9 +36,9 @@ Abaixo estão listados os requisitos organizados por conceito. Utilize as checkb
 
 ### Conceito A (Avançado e Deploy)
 
-- [ ] Aplicação completa, realizando todas as funcionalidades do **Conceito B**.
-- [ ] Aplicação de **regras de negócio** complexas e corretamente implementadas.
-- [ ] Implementar uma funcionalidade que utilize mapeamento **Many-Many** (Ex: Livro e Leitor na entidade Empréstimo) ou que trabalhe com mais de duas entidades.
+- [x] Aplicação completa, realizando todas as funcionalidades do **Conceito B**.
+- [x] Aplicação de **regras de negócio** complexas e corretamente implementadas.
+- [x] Implementar uma funcionalidade que utilize mapeamento **Many-Many** (Ex: Livro e Leitor na entidade Empréstimo) ou que trabalhe com mais de duas entidades.
 - [ ] Utilizar **recursos de mídias** (upload de imagem, áudio ou outro) em um dos endpoints (Ex: Imagem de capa do Livro).
 - [x] Utilizar **autenticação nas APIs** aplicando padrões de segurança:
     - [x] Implementação de **OAuth** e/ou **JWT** (JSON Web Tokens).

@@ -9,7 +9,7 @@ export class UserService {
   }
 
   async inserir(user: User): Promise<User> {
-    if(!user.email || !user.senha) {
+    if(!user.email || !user.senha || !user.nome) {
         throw ({id: 400, msg: "Falta dados obrigatorios"});    
     }
     return await this.repository.save(user);

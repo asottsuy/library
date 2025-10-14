@@ -1,4 +1,4 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToMany } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, ManyToMany, ManyToOne } from "typeorm";
 import { Livro } from "./Livro";
 import { User } from './User';
 export enum StatusEmprestimo {
@@ -12,10 +12,10 @@ export class Emprestimo {
   @PrimaryGeneratedColumn()
   id?: number;
 
-  @ManyToMany(() => Livro)
+  @ManyToOne(() => Livro)
   livro?: Livro;
 
-  @ManyToMany(() => User)
+  @ManyToOne(() => User)
   user?: User;
 
   @Column({ type: "date", default: () => "CURRENT_DATE" })

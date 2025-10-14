@@ -90,7 +90,7 @@ export class LivroService {
 
     const livroAlt = await this.repository.findOne({
       where: { id },
-      relations: ["autores"], // ✅ garante que autores já venham carregados
+      relations: ["autores"],
     });
 
     if (!livroAlt) {
@@ -110,7 +110,7 @@ export class LivroService {
         throw { id: 404, msg: "Um ou mais autores não encontrados" };
       }
 
-      livroAlt.autores = autoresEncontrados; // ✅ array de entidades
+      livroAlt.autores = autoresEncontrados;
     }
     return await this.repository.save(livroAlt);
   }
