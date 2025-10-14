@@ -5,7 +5,8 @@
   "dev": "nodemon src/app.ts --exec ts-node",
   "typeorm": "typeorm-ts-node-commonjs",
   "migration:generate": "npm run typeorm -- -d src/data-source.ts migration:generate src/migration/InitialSchema",
-  "migration:run": "npm run typeorm -- -d src/data-source.ts migration:run"
+  "migration:run": "npm run typeorm -- -d dist/data-source.js migration:run"
+  
 },
   "name": "library",
   "version": "1.0.0",
