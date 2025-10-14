@@ -22,5 +22,5 @@ export const myDataSource = new DataSource({
     type: "postgres",
     url: process.env.DATABASE_URL,
     ssl: process.env.NODE_ENV === "production" ? { rejectUnauthorized: false } : false,
-    entities: ["src/entity/*.js"],
+    entities: [__dirname + '/entity/*.js'],
 });
