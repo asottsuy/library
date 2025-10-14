@@ -39,10 +39,10 @@ Abaixo estão listados os requisitos organizados por conceito. Utilize as checkb
 - [x] Aplicação completa, realizando todas as funcionalidades do **Conceito B**.
 - [x] Aplicação de **regras de negócio** complexas e corretamente implementadas.
 - [x] Implementar uma funcionalidade que utilize mapeamento **Many-Many** (Ex: Livro e Leitor na entidade Empréstimo) ou que trabalhe com mais de duas entidades.
-- [ ] Utilizar **recursos de mídias** (upload de imagem, áudio ou outro) em um dos endpoints (Ex: Imagem de capa do Livro).
+- [x] Utilizar **recursos de mídias** (upload de imagem, áudio ou outro) em um dos endpoints (Ex: Imagem de capa do Livro).
 - [x] Utilizar **autenticação nas APIs** aplicando padrões de segurança:
     - [x] Implementação de **OAuth** e/ou **JWT** (JSON Web Tokens).
-- [ ] **Implantar (deploy)** a API em um servidor na nuvem (AWS, Azure, Heroku, etc.).
+- [x] **Implantar (deploy)** a API em um servidor na nuvem (AWS, Azure, Heroku, etc.).
 - [ ] Utilizar **CI/CD** (Continuous Integration/Continuous Delivery) no deploy (de preferência com GitHub Actions).
 
 ## 🌐 Estrutura da API e Endpoints
@@ -53,10 +53,10 @@ A API é estruturada em torno de quatro recursos principais. O prefixo base para
 
 | Recurso (Entidade) | Relações Típicas | Endpoint Base | CRUD (Verbos) |
 | :--- | :--- | :--- | :--- |
-| **Livro** | Many-to-One (Autor) | `/livros` | `GET`, `POST`, `PUT`, `DELETE` |
+| **Livro** | Many-to-Many (Autor) | `/livros` | `GET`, `POST`, `PUT`, `DELETE` |
 | **Autor** | One-to-Many (Livro) | `/autores` | `GET`, `POST`, `PUT`, `DELETE` |
-| **Leitor** | Base para autenticação | `/leitores` | `GET`, `POST` (Registro), `PUT` |
-| **Empréstimo** | Many-to-Many (Livro, Leitor) | `/emprestimos` | `GET`, `POST` (Novo), `PUT` (Dev.) |
+| **Leitor(user)** | Base para autenticação | `/leitores` | `GET`, `POST` (Registro), `PUT` |
+| **Empréstimo** | One-to-Many (Livro, Leitor) | `/emprestimos` | `GET`, `POST` (Novo), `PUT` (Dev.) |
 
 ## 📦 Modelo de Dados das Entidades
 

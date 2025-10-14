@@ -1,4 +1,9 @@
 /data/postgres
 /data/pgadmin
-/node_modules
+node_modules/
 package-lock.json
+dist/
+.tmp/
+temp/
+.cache/
+.env
