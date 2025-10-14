@@ -11,13 +11,13 @@ import "dotenv/config"
 //   database: "library-db",
 //   entities: ["src/entity/*.ts"],
 //   logging: true,
-//   dropSchema: false, //adicionar se quiser limpar o banco
+//   dropSchema: true, //adicionar se quiser limpar o banco
 //   synchronize: true,
 //   subscribers: [],
 //   migrations: ["src/migration/*.ts"],
 // });
 
-//prod
+// prod
 export const myDataSource = new DataSource({
     type: "postgres",
     url: process.env.DATABASE_URL,

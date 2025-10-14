@@ -144,6 +144,6 @@ Esta seção é dedicada a orientar os próximos desenvolvedores sobre as tarefa
   * **Não fazer merge na Main**: **NÃO FAÇA** merge direto na branch `main`. A branch `main` deve ser atualizada apenas através de Pull Requests aprovados.
 
 <!-- end list -->
-
+//"migration:run": "npm run typeorm -- -d dist/data-source.js migration:run"
 ```
 ```
