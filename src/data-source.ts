@@ -14,7 +14,7 @@ import "dotenv/config"
 //   dropSchema: false, //adicionar se quiser limpar o banco
 //   synchronize: true,
 //   subscribers: [],
-//   migrations: [],
+//   migrations: ["src/migration/*.ts"],
 // });
 
 //prod
@@ -23,4 +23,5 @@ export const myDataSource = new DataSource({
     url: process.env.DATABASE_URL,
     ssl: process.env.NODE_ENV === "production" ? { rejectUnauthorized: false } : false,
     entities: [__dirname + '/entity/*.js'],
+    migrations: [__dirname + '/migration/*.js'],
 });
