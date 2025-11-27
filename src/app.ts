@@ -1,5 +1,6 @@
 import "reflect-metadata";
 import express from "express";
+import cors from "cors";
 import { myDataSource } from "./data-source";
 //livro
 import { LivroService } from "./service/LivroService";
@@ -34,7 +35,7 @@ myDataSource
     const app = express();
     const port = 3000;
     app.use(express.json());
-    
+    app.use(cors()); 
     //Autor
     const autorRepository = myDataSource.getRepository(Autor);
     const autorService = new AutorService(autorRepository);
