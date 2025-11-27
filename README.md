@@ -54,9 +54,9 @@ A API é estruturada em torno de quatro recursos principais. O prefixo base para
 | Recurso (Entidade) | Relações Típicas | Endpoint Base | CRUD (Verbos) |
 | :--- | :--- | :--- | :--- |
 | **Livro** | Many-to-Many (Autor) | `/livros` | `GET`, `POST`, `PUT`, `DELETE` |
-| **Autor** | One-to-Many (Livro) | `/autores` | `GET`, `POST`, `PUT`, `DELETE` |
-| **Leitor(user)** | Base para autenticação | `/leitores` | `GET`, `POST` (Registro), `PUT` |
-| **Empréstimo** | One-to-Many (Livro, Leitor) | `/emprestimos` | `GET`, `POST` (Novo), `PUT` (Dev.) |
+| **Autor** | Many-to-Many (Livro) | `/autores` | `GET`, `POST`, `PUT`, `DELETE` |
+| **Leitor(user)** |One-to-Many Base para autenticação | `/leitores` | `GET`, `POST` (Registro), `PUT` |
+| **Empréstimo** | Many-to-One (Livro, Leitor) | `/emprestimos` | `GET`, `POST` (Novo), `PUT` (Dev.) |
 
 ## 📦 Modelo de Dados das Entidades
 
